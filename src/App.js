@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { clients } from './mock/clients';
-import { machines } from './mock/machines';
+import { collection, getDocs, addDoc, updateDoc, doc } from 'firebase/firestore';
+import { db } from './firebaseConfig'; // Importar db desde la configuración de Firebase
+
+// No necesitamos mock data si estamos usando Firebase
+// import { clients as mockClients } from './mock/clients';
+// import { machines as mockMachines } from './mock/machines';
+// import { reports as mockReports } from './mock/reports';
+
 import { serviceTypes } from './mock/services';
-import { reports as initialReports } from './mock/reports';
 import { generateFolio } from './utils/folioGenerator';
+
 import CafeClientForm from './components/CafeClientForm';
 import MachineServiceForm from './components/MachineServiceForm';
 import ReportHistory from './components/ReportHistory';
 import UpcomingServices from './components/UpcomingServices';
-import LandingPage from './components/LandingPage'; // Importar la nueva LandingPage
+import LandingPage from './components/LandingPage';
 
 const App = () => {
   const [showLanding, setShowLanding] = useState(true); // Estado para mostrar la portada
